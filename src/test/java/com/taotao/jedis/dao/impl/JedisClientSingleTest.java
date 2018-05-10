@@ -14,6 +14,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
+
 import redis.clients.jedis.Jedis;
 
 /**   
@@ -53,7 +55,8 @@ public class JedisClientSingleTest {
 	 */
 	@Test
 	public void testSet() {
-		
+		String string = jedisClientSingle.set("redis", "redis");
+		System.out.println("string = "+string);
 	}
 
 	/**
@@ -61,7 +64,8 @@ public class JedisClientSingleTest {
 	 */
 	@Test
 	public void testHget() {
-		
+		String string = jedisClientSingle.hget("hset","key");
+		System.out.println("string = "+string);
 	}
 
 	/**
@@ -69,7 +73,8 @@ public class JedisClientSingleTest {
 	 */
 	@Test
 	public void testHset() {
-		
+		Long string = jedisClientSingle.hset("hset", "key", "redis");
+		System.out.println("string ="+string);
 	}
 
 	/**
@@ -77,6 +82,8 @@ public class JedisClientSingleTest {
 	 */
 	@Test
 	public void testIncr() {
+		Long string = jedisClientSingle.incr("key");
+		System.out.println("string = "+ string);
 		
 	}
 
@@ -85,7 +92,8 @@ public class JedisClientSingleTest {
 	 */
 	@Test
 	public void testExpire() {
-		
+		Long string = jedisClientSingle.expire("key", 2000);
+		System.out.println("string = "+string);
 	}
 
 	/**
@@ -93,7 +101,8 @@ public class JedisClientSingleTest {
 	 */
 	@Test
 	public void testTtl() {
-		
+		Long string = jedisClientSingle.ttl("key");
+		System.out.println("string = "+string);
 	}
 
 	/**
@@ -101,7 +110,8 @@ public class JedisClientSingleTest {
 	 */
 	@Test
 	public void testDel() {
-		
+		Long string = jedisClientSingle.del("key");
+		System.out.println("string ="+string);
 	}
 
 	/**
@@ -109,7 +119,8 @@ public class JedisClientSingleTest {
 	 */
 	@Test
 	public void testHdel() {
-		
+		Long string = jedisClientSingle.hdel("hset", "key");
+		System.out.println("string ="+string);
 	}
 
 }

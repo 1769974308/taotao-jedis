@@ -8,6 +8,9 @@
  */
 package com.taotao.jedis.dao.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import com.taotao.jedis.dao.JedisClient;
 
 import redis.clients.jedis.Jedis;
@@ -111,6 +114,30 @@ public class JedisClientSingle implements JedisClient {
 		Long string = jedis.hdel(hkey, key);
 		jedis.close();
 		return string;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.taotao.jedis.dao.JedisClient#hgetAll(java.lang.String)
+	 */
+	public Map<String, String> hgetAll(String hkey) {
+		Map<String, String> map = jedis.hgetAll(hkey);
+		return map;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.taotao.jedis.dao.JedisClient#lpush(java.lang.String, java.lang.String)
+	 */
+	public Long lpush(String key, String value) {
+		Long string = jedis.lpush(key, value);
+		return string;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.taotao.jedis.dao.JedisClient#lrange(java.lang.String, int, int)
+	 */
+	public List<String> lrange(String key, Long start, Long end) {
+		List<String> list  = jedis.lrange(key, start, end);
+		return list;
 	}
 
 }
